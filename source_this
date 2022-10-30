@@ -1,0 +1,7 @@
+#!/bin/bash
+
+source .venv/Scripts/activate
+
+run () {
+    py ./main.py
+}

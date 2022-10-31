@@ -50,14 +50,13 @@ class Client(discord.Client):
         super().run(self.SETTINGS['TOKEN'])
 
     async def on_ready(self):
-        print('ready')
+        print('client is ready')
         guild_id = self.SETTINGS['GUILD_ID']
         self.guild = self.get_guild(guild_id)
         if self.guild is None:
             print('guild does not exist! guild id:', guild_id)
-        for channel in self.guild.channels:
-            if isinstance(channel, discord.TextChannel):
-                self.channels[channel.id] = channel
+        for channel in self.get_text_channels():
+            self.channels[channel.id] = channel
         
     def test(self, s):
         if (self.is_ready()):
@@ -134,3 +133,9 @@ class Client(discord.Client):
                     #await channel.send('0')
                 break
 
+    def get_text_channels(self):
+        ret = []
+        for channel in self.guild.channels:
+            if isinstance(channel, discord.TextChannel):
+                ret.append(channel)
+        return ret

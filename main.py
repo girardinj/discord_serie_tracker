@@ -1,5 +1,4 @@
 
-import re
 import webview
 import json
 import threading

@@ -22,7 +22,6 @@ class Api:
         for channel in self.client.get_text_channels():
             ret['channels'].append({'name': str(channel.name), 'id': str(channel.id)})
 
-        print(ret)
         return ret
 
     def increment(self, channel_id, increment_episode):

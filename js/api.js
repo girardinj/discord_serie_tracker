@@ -1,9 +1,4 @@
 
-function test() {
-    init()
-    pywebview.api.test()
-}
-
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
  }
@@ -17,7 +12,7 @@ function sleep(ms) {
  }
 
 function init() {
-    let c = document.getElementById('response-container')
+    let c = document.getElementById('debug-container')
     c.innerHTML = 'loading...'
 
     if (typeof pywebview === 'undefined') {
@@ -61,7 +56,7 @@ function increment(increment_episode) {
         let channels_list_selector = document.getElementById('response-container-list')
         let selected_id = channels_list_selector.value
 
-        document.getElementById('response-container').innerHTML = selected_id
+        document.getElementById('debug-container').innerHTML = selected_id
         pywebview.api.increment(selected_id, increment_episode).then(_ => {
             warn('incremented ! (maybe wait a bit to see it change)')
         })

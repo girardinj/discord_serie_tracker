@@ -58,12 +58,6 @@ class Client(discord.Client):
         for channel in self.get_text_channels():
             self.channels[channel.id] = channel
         
-    def test(self, s):
-        if (self.is_ready()):
-            print('test from:', s)
-            #self.create_text_channel('newchannel1')
-            self.increment(1036104243712635000, True)
-
     def send_message(self, message: str, channel_id: int):
         channel = self.get_channel(channel_id)
         if channel is not None:

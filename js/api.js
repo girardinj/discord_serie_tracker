@@ -68,7 +68,7 @@ function increment(increment_episode) {
 function create_new_channel() {
     if (API_READY) {
         let name = document.getElementById('new_channel_input').value.trim()
-        
+        document.getElementById('new_channel_input').value = ''
         if (name.trim() === '') {
             warn('please put a name')
         }

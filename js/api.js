@@ -30,7 +30,7 @@ function init() {
 
 function loadChannels(end_function) {
     pywebview.api.load_channels().then(response => {
-        let container = document.getElementById('response-container-list')
+        let container = document.getElementById('channels-list')
 
         response.channels.forEach(channel => {
             let option = document.createElement('option')
@@ -53,7 +53,7 @@ function increment_season() {
 
 function increment(increment_episode) {
     if (API_READY) {
-        let channels_list_selector = document.getElementById('response-container-list')
+        let channels_list_selector = document.getElementById('channels-list')
         let selected_id = channels_list_selector.value
 
         document.getElementById('debug-container').innerHTML = selected_id
@@ -83,7 +83,7 @@ function create_new_channel() {
 
 function update_episode() {
     if (API_READY) {
-        let selected_id = document.getElementById('response-container-list').value
+        let selected_id = document.getElementById('channels-list').value
         
         let season_no = document.getElementById('update_season').value
         let episode_no = document.getElementById('update_episode').value

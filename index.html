@@ -4,17 +4,33 @@
     </head>
     <body>
         <script src="js/api.js"></script>
+
         <div id="debug-container"></div>
 
-        <label for="channels_list">Choose a channel :</label>
-        <select id="response-container-list" name="channels_list"></select>
+        <div>
+            <label for="channels_list">Choose a channel :</label>
+            <select id="response-container-list" name="channels_list"></select>
+        </div>
 
-        <button onclick="increment_episode()">Next episode</button>
-        <button onclick="increment_season()">Next season</button>
+        <div>
+            <button onclick="increment_episode()">Next episode</button>
+            <button onclick="increment_season()">Next season</button>
+        </div>
 
-        <input id="new_channel_input" type="text"/>
-        <button onclick="create_new_channel()">Add new channel</button>
+        <div>
+            <label for="new_channel_input">New channel name</label>
+            <input id="new_channel_input" name="new_channel_input" type="text"/>
+            <button onclick="create_new_channel()">Add new channel</button>
+        </div>
 
+        <div>
+            <p>Manually change</p>
+            <label for="update_season">Season</label>
+            <input id="update_season" name="update_season" type="number" value="1"/>
+            <label for="update_episode">Episode</label>
+            <input id="update_episode" name="update_episode" type="number" value="1"/>
+            <button onclick="update_episode()">Update</button>
+        </div>
 
         <div id="warning-container"></div>
 

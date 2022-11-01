@@ -1,5 +1,6 @@
 
 import time
+from tkinter import E
 
 
 class Api:
@@ -26,8 +27,23 @@ class Api:
 
     def increment(self, channel_id, increment_episode):
         if self.client_ready:
-            self.client.increment(int(channel_id), increment_episode)
+            try:
+                c_id = int(channel_id)
+                self.client.increment(c_id, increment_episode)
+            except TypeError:
+                return {'message': 'error converting id'}
 
     def create_text_channel(self, channel_name):
         if self.client_ready:
             self.client.create_text_channel(channel_name)
+
+    def manual_update_episode(self, channel_id, season_no, number_no):
+        if self.client_ready:
+            try:
+                c_id = int(channel_id)
+                s_no = int(season_no)
+                n_no = int(number_no)
+                self.client.manual_update_episode(c_id, s_no, n_no)
+            except TypeError:
+                return {'message': 'error converting values'}
+    # TODO: change if self.client.ready with decorators !

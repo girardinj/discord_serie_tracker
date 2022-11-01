@@ -127,6 +127,24 @@ class Client(discord.Client):
                     #await channel.send('0')
                 break
 
+    def manual_update_episode(self, channel_id: int, season_no: int, episode_no: int):
+        if channel_id in self.channels.keys():
+            channel = self.channels[channel_id]
+            self.loop.create_task(self._manual_update_episode(channel, season_no, episode_no))
+        else:
+            print('wrong channel id')
+
+    async def _manual_update_episode(self, channel, season_no: int, episode_no: int):
+        async for message in channel.history(limit=50, oldest_first=False):
+            if message.author is self.guild.me:
+                try:
+                    new_message = self.message_pattern.get({'[season]': season_no, '[episode]': episode_no})
+                    await message.edit(content=new_message)
+                except ValueError:
+                    await channel.send('old message corrupted, rip', delete_after=5)
+                    #await channel.send('0')
+                break
+
     def get_text_channels(self):
         ret = []
         for channel in self.guild.channels:

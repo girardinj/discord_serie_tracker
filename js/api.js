@@ -3,7 +3,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
  }
 
- function warn(s, time_ms=3000) {
+ function warn(s='client is not ready yet, please wait a bit', time_ms=3000) {
     let warning_thing = document.getElementById('warning-container')
     warning_thing.innerHTML = s
     sleep(time_ms).then(_ => {
@@ -61,7 +61,7 @@ function increment(increment_episode) {
             warn('incremented ! (maybe wait a bit to see it change)')
         })
     } else {
-        warn('client is not ready yet, please wait a bit')
+        warn()
     }
 }
 
@@ -77,7 +77,25 @@ function create_new_channel() {
             warn('created ! (maybe wait a bit to see it change)<br>reload to see it in the list')
         }
     } else {
-        warn('client is not ready yet, please wait a bit')
+        warn()
+    }
+}
+
+function update_episode() {
+    if (API_READY) {
+        let selected_id = document.getElementById('response-container-list').value
+        
+        let season_no = document.getElementById('update_season').value
+        let episode_no = document.getElementById('update_episode').value
+
+        document.getElementById('debug-container').innerHTML = selected_id
+        
+        pywebview.api.manual_update_episode(selected_id, season_no, episode_no).then(_ => {
+            warn('changed ! (maybe wait a bit to see it change)')
+        })
+        
+    } else {
+        warn()
     }
 }
 
